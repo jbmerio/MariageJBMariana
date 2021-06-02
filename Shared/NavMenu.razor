@@ -1,27 +1,48 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">💒 Mariage JB & Mariana</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+	<a class="navbar-brand" href="">
+		<img src="icon-512.png" style="max-height:30px" />
+		Mariage JB & Mariana
+	</a>
+	<button class="navbar-toggler" @onclick="ToggleNavMenu">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Accueil
-            </NavLink>
-        </li>
-    </ul>
+	<ul class="nav flex-column">
+		<li class="nav-item px-3">
+			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+				<span class="oi oi-home" aria-hidden="true"></span> Accueil
+			</NavLink>
+		</li>
+		<li class="nav-item px-3">
+			<NavLink class="nav-link" href="/ListeCadeaux" Match="NavLinkMatch.All">
+				<span class="oi oi-home" aria-hidden="true"></span> Liste de cadeaux
+			</NavLink>
+		</li>
+		<li class="nav-item px-3 mt-5 mx-auto" style="">
+			<button class="col-md-6 offset-md-3 bg-transparent border-0" style="background-image:url(flag-@(Program.Country.France).png);height: 100px!important;width: 120px!important;"
+					@onclick="() => ChangeLanguage(Program.Country.France)">
+			</button>
+			<button class="col-md-6 offset-md-3 bg-transparent border-0" style="background-image:url(flag-@(Program.Country.Colombia).png);height: 100px!important;width: 120px!important;"
+					@onclick="() => ChangeLanguage(Program.Country.Colombia)">
+			</button>
+		</li>
+	</ul>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+	private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+	private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+	private void ToggleNavMenu()
+	{
+		collapseNavMenu = !collapseNavMenu;
+	}
+
+	private void ChangeLanguage(Program.Country country)
+	{
+		Program.Language = country;
+	}
 }
